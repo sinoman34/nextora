@@ -1,0 +1,344 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background: #f9f9f9;
+}
+
+/* ----- TOP NAVBAR ----- */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #fff;
+  padding: 12px 40px;
+  border-bottom: 1px solid #ddd;
+}
+
+.logo img {
+  height: 35px;
+}
+
+/* Navigation Links */
+.nav-links {
+  display: flex;
+  gap: 20px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #222;
+  font-size: 15px;
+}
+
+/* Right side */
+.nav-icons {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.nav-icons img {
+  width: 22px;
+  height: 22px;
+  cursor: pointer;
+}
+
+
+.login-btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #7b2ff7;
+  color: white;
+  border-radius: 6px;
+  text-decoration: none;
+}
+
+/* ----- BOTTOM BAR ----- */
+.bottom-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  padding: 10px 40px;
+  background: #fff;
+  border-bottom: 1px solid #ddd;
+}
+
+.categories select {
+  padding: 6px 10px;
+  border: 1px solid #bbb;
+  border-radius: 4px;
+}
+
+.search-box {
+  display: flex;
+  width: 50%;
+  max-width: 500px;
+}
+
+.search-box input {
+  flex: 1;
+  padding: 6px 10px;
+  border: 1px solid #bbb;
+  border-radius: 4px 0 0 4px;
+  outline: none;
+}
+
+.search-box button {
+  border: none;
+  padding: 6px 12px;
+  background-color: #7b2ff7;
+  border-radius: 0 4px 4px 0;
+  cursor: pointer;
+}
+
+.search-box button img {
+  width: 18px;
+  height: 18px;
+  filter: invert(1);
+  /* icon white */
+}
+
+
+
+
+/* ----- HERO SECTION ----- */
+.hero {
+  position: relative;
+  width: 100%;
+  height: 80vh;
+  overflow: hidden;
+}
+
+/* Background video styling */
+.bg-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
+
+/* Overlay content */
+.hero-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.505);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #fff;
+  padding: 0 20px;
+}
+
+/* Hero Title */
+.hero-content h1 {
+  font-size: 48px;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+/* Hero Text */
+.hero-content p {
+  font-size: 18px;
+  margin-bottom: 25px;
+}
+
+/* Shop Now Button */
+.shop-now-btn {
+  background: #7b2ff7;
+  color: white;
+  text-decoration: none;
+  padding: 12px 25px;
+  border-radius: 6px;
+  font-size: 16px;
+
+}
+
+
+
+/* LOGIN / SIGNUP PAGE DESIGN
+
+
+/* Container for login/signup form */
+.container {
+  background: white;
+  padding: 30px;
+  border-radius: 8px;
+  width: 600px;
+  text-align: center;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  margin: 60px auto;
+}
+
+.container h2 {
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Form boxes */
+.form-box {
+  margin-top: 10px;
+}
+
+.form-box h3 {
+  margin-bottom: 15px;
+  color: #555;
+}
+
+/* Input fields and buttons */
+.container input {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.container button {
+  width: 100%;
+  padding: 10px;
+  background-color: #7b2ff7;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.container button:hover {
+  background-color: #9c5cff;
+  transition: 0.3s;
+}
+
+/* Hide / show toggle */
+.hidden {
+  display: none;
+}
+
+.container p {
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.container a {
+  color: #7b2ff7;
+  text-decoration: none;
+}
+
+.container a:hover {
+  text-decoration: underline;
+}
+
+
+/* login btn hide */
+
+.logout-menu {
+  position: absolute;
+  top: 65px;
+  right: 40px;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 10px;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+}
+
+#logoutBtn {
+  background: none;
+  border: none;
+  color: #333;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+#logoutBtn:hover {
+  color: #7b2ff7;
+}
+
+
+
+/* ----- FEATURED PRODUCTS SECTION ----- */
+.products-section {
+  padding: 60px 40px;
+  background: #fff;
+  text-align: center;
+}
+
+.products-section h2 {
+  font-size: 28px;
+  margin-bottom: 30px;
+  color: #333;
+}
+
+/* Product grid layout */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 25px;
+}
+
+/* Each product card */
+.product-card {
+  background: #f9f9f9;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  padding: 20px;
+  transition: 0.3s;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Product image */
+.product-card img {
+  width: 100%;
+  max-width: 180px;
+  height: auto;
+  margin-bottom: 15px;
+}
+
+/* Product title */
+.product-card h3 {
+  font-size: 18px;
+  color: #222;
+  margin-bottom: 8px;
+}
+
+/* Product price */
+.product-card p {
+  font-size: 16px;
+  color: #7b2ff7;
+  font-weight: bold;
+  margin-bottom: 12px;
+}
+
+/* Add to Cart button */
+.product-card button {
+  background-color: #7b2ff7;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.product-card button:hover {
+  background-color: #9c5cff;
+}
+
