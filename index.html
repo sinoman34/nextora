@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nextora Shop</title>
+  <link rel="stylesheet" href="style.css">
+  <script type="module" src="firebase.js"></script>
+  <script type="module" src="navbarAuth.js"></script>
+</head>
+
+<body>
+
+  <!-- Top Navbar -->
+  <header class="navbar">
+    <!-- Logo -->
+    <div class="logo">
+      <a href="index.html"><img src="icon-img-logo/logo full dark.png" alt="Logo"></a>
+    </div>
+
+    <!-- Middle Links -->
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="#">About</a>
+      <a href="#">Products</a>
+      <a href="#">Design</a>
+      <a href="#">Support</a>
+    </nav>
+
+    <!-- Right Side Icons -->
+    <div class="nav-icons">
+      <a href="#"><img src="icon-img-logo/heart.png" alt="Wishlist"></a>
+      <a href="#"><img src="icon-img-logo/cart.png" alt="Cart"></a>
+      <a id="profileIcon" href="#" class="profile-icon">
+        <img src="icon-img-logo/user.png" alt="Profile">
+      </a>
+      <a id="loginBtn" href="Register.html" class="login-btn">Login / Sign Up</a>
+
+      <!-- 🔹 Logout dropdown (প্রথমে hidden থাকবে) -->
+      <div id="logoutMenu" class="hidden logout-menu">
+        <button id="logoutBtn">Logout</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Bottom Section -->
+  <div class="bottom-bar">
+    <div class="categories">
+      <select>
+        <option>All Categories</option>
+        <option>Adobe Product</option>
+        <option>AI Supscriptoin</option>
+        <option>Windows</option>
+        <option>Electronics</option>
+      </select>
+    </div>
+    <div class="search-box">
+      <input type="text" placeholder="Search products...">
+      <button><img src="icon-img-logo/search.png" alt="Search"></button>
+    </div>
+  </div>
+  <main>
+    <section class="hero">
+
+      <!-- Background Video -->
+      <video autoplay muted loop playsinline class="bg-video">
+        <source src="icon-img-logo/bg video.mp4" type="video/mp4">
+        Your browser does not support HTML5 video.
+      </video>
+
+      <!-- Overlay Content -->
+      <div class="hero-content">
+        <h1>Welcome to Nextora Shop</h1>
+        <p>Your one-stop shop for all your digital needs.</p>
+        <a href="#" class="shop-now-btn">Shop Now</a>
+      </div>
+
+    </section>
+    <!-- 🔹 Featured Products Section -->
+    <section class="products-section">
+      <h2>Featured Products</h2>
+
+      <div class="product-grid">
+        <div class="product-card">
+          <img src="icon-img-logo/product1.png" alt="Adobe Photoshop">
+          <h3>Adobe Photoshop</h3>
+          <p>$19.99</p>
+          <button>Add to Cart</button>
+        </div>
+
+        <div class="product-card">
+          <img src="icon-img-logo/product2.png" alt="Windows 11 Pro">
+          <h3>Windows 11 Pro</h3>
+          <p>$39.99</p>
+          <button>Add to Cart</button>
+        </div>
+
+        <div class="product-card">
+          <img src="icon-img-logo/product3.png" alt="ChatGPT Plus">
+          <h3>ChatGPT Plus</h3>
+          <p>$20.00</p>
+          <button>Add to Cart</button>
+        </div>
+
+        <div class="product-card">
+          <img src="icon-img-logo/product4.png" alt="Canva Pro">
+          <h3>Canva Pro</h3>
+          <p>$12.99</p>
+          <button>Add to Cart</button>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+
+</html>
