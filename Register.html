@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register account</title>
+  <link rel="stylesheet" href="style.css">
+  <script type="module" src="firebase.js"></script>
+  <script type="module" src="navbarAuth.js"></script>
+</head>
+
+<body>
+  <header class="navbar">
+    <!-- Logo -->
+    <div class="logo">
+      <a href="index.html"><img src="icon-img-logo/logo full dark.png" alt="Logo"></a>
+    </div>
+
+    <!-- Middle Links -->
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="#">About</a>
+      <a href="#">Products</a>
+      <a href="#">Design</a>
+      <a href="#">Support</a>
+    </nav>
+
+    <!-- Right Side Icons -->
+    <div class="nav-icons">
+      <a href="#"><img src="icon-img-logo/heart.png" alt="Wishlist"></a>
+      <a href="#"><img src="icon-img-logo/cart.png" alt="Cart"></a>
+      <a id="profileIcon" href="#" class="profile-icon">
+        <img src="icon-img-logo/user.png" alt="Profile">
+      </a>
+      <a id="loginBtn" href="Register.html" class="login-btn">Login / Sign Up</a>
+
+      <!-- 🔹 Logout dropdown (প্রথমে hidden থাকবে) -->
+      <div id="logoutMenu" class="hidden logout-menu">
+        <button id="logoutBtn">Logout</button>
+      </div>
+    </div>
+  </header>
+  <main>
+    <!-- 🔹 Login / Signup Section -->
+    <div class="container">
+      <h2>Welcome to Nextora Shop</h2>
+
+      <!-- Login Box -->
+      <div class="form-box" id="loginBox">
+        <h3>Login</h3>
+        <form>
+          <input type="text" placeholder="Email or Username" required>
+          <input type="password" placeholder="Password" required>
+          <button type="submit">Login</button>
+        </form>
+        <p>Don't have an account?
+          <a href="#" onclick="showSignup()">Sign Up</a>
+        </p>
+      </div>
+
+      <!-- Signup Box -->
+      <div class="form-box hidden" id="signupBox">
+        <h3>Create Account</h3>
+        <form>
+          <input type="text" placeholder="First Name" required>
+          <input type="text" placeholder="Last Name" required>
+          <input type="email" placeholder="Email" required>
+          <input type="password" placeholder="Password" required>
+          <button type="submit">Sign Up</button>
+        </form>
+        <p>Already have an account?
+          <a href="#" onclick="showLogin()">Login</a>
+        </p>
+      </div>
+    </div>
+
+    <!-- 🔹 JavaScript Toggle -->
+    <script>
+      const loginBox = document.getElementById('loginBox');
+      const signupBox = document.getElementById('signupBox');
+
+      function showSignup() {
+        loginBox.classList.add('hidden');
+        signupBox.classList.remove('hidden');
+      }
+
+      function showLogin() {
+        signupBox.classList.add('hidden');
+        loginBox.classList.remove('hidden');
+      }
+    </script>
+
+    <!-- 🔹 Firebase Authentication Script -->
+    <script type="module">
+      import { auth } from "./firebase.js";
+      import {
+        createUserWithEmailAndPassword,
+        signInWithEmailAndPassword
+      } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
+
+      const signupForm = document.querySelector('#signupBox form');
+      signupForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const email = signupForm.querySelector('input[type="email"]').value;
+        const password = signupForm.querySelector('input[type="password"]').value;
+
+        createUserWithEmailAndPassword(auth, email, password)
+          .then((userCredential) => {
+            alert("✅ Signup successful!");
+            showLogin();
+          })
+          .catch((error) => {
+            alert("❌ " + error.message);
+          });
+      });
+
+      const loginForm = document.querySelector('#loginBox form');
+      loginForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const email = loginForm.querySelector('input[type="text"]').value;
+        const password = loginForm.querySelector('input[type="password"]').value;
+
+        signInWithEmailAndPassword(auth, email, password)
+          .then((userCredential) => {
+            alert("✅ Login successful!");
+            window.location = "index.html"; // চাইলে redirect করো
+          })
+          .catch((error) => {
+            alert("❌ " + error.message);
+          });
+      });
+    </script>
+
+  </main>
+  <footer>
+
+  </footer>
+</body>
+
+</html>
