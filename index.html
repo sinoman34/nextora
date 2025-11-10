@@ -8,18 +8,20 @@
   <link rel="stylesheet" href="style.css">
   <script type="module" src="firebase.js"></script>
   <script type="module" src="navbarAuth.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+    integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
 
   <!-- Top Navbar -->
   <header class="navbar">
-    <!-- Logo -->
     <div class="logo">
       <a href="index.html"><img src="icon-img-logo/logo full dark.png" alt="Logo"></a>
     </div>
 
-    <!-- Middle Links -->
+    <!-- Menu links -->
     <nav class="nav-links">
       <a href="index.html">Home</a>
       <a href="#">About</a>
@@ -28,19 +30,17 @@
       <a href="#">Support</a>
     </nav>
 
-    <!-- Right Side Icons -->
+    <!-- Right icons -->
     <div class="nav-icons">
-      <a href="#"><img src="icon-img-logo/heart.png" alt="Wishlist"></a>
       <a href="#"><img src="icon-img-logo/cart.png" alt="Cart"></a>
-      <a id="profileIcon" href="#" class="profile-icon">
-        <img src="icon-img-logo/user.png" alt="Profile">
-      </a>
-      <a id="loginBtn" href="Register.html" class="login-btn">Login / Sign Up</a>
+      <a id="profileIcon" href="#"><img src="icon-img-logo/user.png" alt="Profile"></a>
+    </div>
 
-      <!-- 🔹 Logout dropdown (প্রথমে hidden থাকবে) -->
-      <div id="logoutMenu" class="hidden logout-menu">
-        <button id="logoutBtn">Logout</button>
-      </div>
+    <!-- Hamburger -->
+    <div class="hamburger" id="hamburger">
+      <div></div>
+      <div></div>
+      <div></div>
     </div>
   </header>
 
@@ -73,7 +73,7 @@
       <div class="hero-content">
         <h1>Welcome to Nextora Shop</h1>
         <p>Your one-stop shop for all your digital needs.</p>
-        <a href="#" class="shop-now-btn">Shop Now</a>
+        <a id="shopNowBtn" href="#" class="shop-now-btn">Shop Now</a>
       </div>
 
     </section>
@@ -112,6 +112,71 @@
       </div>
     </section>
   </main>
+
+  <!-- ======= Footer Section ======= -->
+  <footer class="footer">
+    <div class="footer-container">
+
+      <!-- Company Info -->
+      <div class="footer-about">
+        <a id="footer_nextora" href="index.html">
+          <h2>Nextora</h2>
+        </a>
+        <p>We craft creative digital experiences that help brands grow, connect, and inspire audiences worldwide.</p>
+        <div class="footer-social">
+          <a href="https://www.facebook.com/nomannext"><i class="fa-brands fa-facebook"></i></a>
+          <a href="https://www.instagram.com/nomannext/"><i class="fa-brands fa-square-instagram"></i></a>
+          <a href="https://www.linkedin.com/in/nomannext/"><i class="fa-brands fa-linkedin"></i></a>
+          <a href="https://www.behance.net/NomanNext"><i class="fa-brands fa-behance"></i></a>
+        </div>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="footer-links">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Product</a></li>
+          <li><a href="#">Services</a></li>
+          <li><a href="#">Design</a></li>
+          <li><a href="#">Support</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact Info -->
+      <div class="footer-contact">
+        <h3>Get in Touch</h3>
+        <p><i class="fas fa-map-marker-alt"></i> Feni, Bangladesh</p>
+        <p><i class="fas fa-envelope"></i> contact@nextora.com</p>
+        <p><i class="fas fa-phone"></i> +880 1619-518375</p>
+      </div>
+
+    </div>
+
+    <hr>
+    <div class="footer-bottom">
+      © 2025 <strong>Nextora</strong>. All Rights Reserved. | Designed by <span>Noman</span>
+    </div>
+  </footer>
+
+  <!-- Font Awesome -->
+  <!-- <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script> -->
+
 </body>
+<script type="module" src="jsfile/authRedirect.js"></script>
+<script type="module">
+  import { checkAuthAndRedirect } from "./jsfile/authRedirect.js";
+
+  const shopBtn = document.getElementById("shopNowBtn");
+  if (shopBtn) {
+    shopBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      // লগইন থাকলে product.html, না থাকলে Register.html
+      checkAuthAndRedirect("product.html", "Register.html");
+    });
+  }
+</script>
+<i class="fa-brands fa-facebook"></i>
 
 </html>
