@@ -8,50 +8,52 @@
   <link rel="stylesheet" href="style.css">
   <script type="module" src="firebase.js"></script>
   <script type="module" src="navbarAuth.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+    integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
   <header class="navbar">
-    <!-- Logo -->
-    <div class="logo">
-      <a href="index.html"><img src="icon-img-logo/logo full dark.png" alt="Logo"></a>
-    </div>
+  <div class="logo">
+    <a href="index.html"><img src="icon-img-logo/logo full dark.png" alt="Logo"></a>
+  </div>
 
-    <!-- Middle Links -->
-    <nav class="nav-links">
-      <a href="index.html">Home</a>
-      <a href="#">About</a>
-      <a href="#">Products</a>
-      <a href="#">Design</a>
-      <a href="#">Support</a>
-    </nav>
+  <!-- Menu links -->
+  <nav class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="#">About</a>
+    <a href="#">Products</a>
+    <a href="#">Design</a>
+    <a href="#">Support</a>
+  </nav>
 
-    <!-- Right Side Icons -->
-    <div class="nav-icons">
-      <a href="#"><img src="icon-img-logo/heart.png" alt="Wishlist"></a>
-      <a href="#"><img src="icon-img-logo/cart.png" alt="Cart"></a>
-      <a id="profileIcon" href="#" class="profile-icon">
-        <img src="icon-img-logo/user.png" alt="Profile">
-      </a>
-      <a id="loginBtn" href="Register.html" class="login-btn">Login / Sign Up</a>
+  <!-- Right icons -->
+  <div class="nav-icons">
+    <a href="#"><img src="icon-img-logo/cart.png" alt="Cart"></a>
+    <a id="profileIcon" href="#"><img src="icon-img-logo/user.png" alt="Profile"></a>
+  </div>
 
-      <!-- 🔹 Logout dropdown (প্রথমে hidden থাকবে) -->
-      <div id="logoutMenu" class="hidden logout-menu">
-        <button id="logoutBtn">Logout</button>
-      </div>
-    </div>
-  </header>
+  <!-- Hamburger -->
+  <div class="hamburger" id="hamburger">
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+</header>
   <main>
-    <!-- 🔹 Login / Signup Section -->
     <div class="container">
       <h2>Welcome to Nextora Shop</h2>
 
       <!-- Login Box -->
       <div class="form-box" id="loginBox">
+        <div class="form-illustration">
+          <img src="icon-img-logo/logimg.png" alt="Login Illustration">
+        </div>
         <h3>Login</h3>
-        <form>
-          <input type="text" placeholder="Email or Username" required>
-          <input type="password" placeholder="Password" required>
+        <form id="login-form">
+          <input type="text" id="login-email" placeholder="Email" required>
+          <input type="password" id="login-password" placeholder="Password" required>
           <button type="submit">Login</button>
         </form>
         <p>Don't have an account?
@@ -61,12 +63,16 @@
 
       <!-- Signup Box -->
       <div class="form-box hidden" id="signupBox">
+        <div class="form-illustration">
+          <img src="icon-img-logo/signupimg.png" alt="Signup Illustration">
+        </div>
         <h3>Create Account</h3>
-        <form>
-          <input type="text" placeholder="First Name" required>
-          <input type="text" placeholder="Last Name" required>
-          <input type="email" placeholder="Email" required>
-          <input type="password" placeholder="Password" required>
+        <form id="signup-form">
+          <input type="text" id="firstName" placeholder="First Name" required>
+          <input type="text" id="lastName" placeholder="Last Name" required>
+          <input type="text" id="country" placeholder="Country" required>
+          <input type="email" id="email" placeholder="Email" required>
+          <input type="password" id="password" placeholder="Password" required>
           <button type="submit">Sign Up</button>
         </form>
         <p>Already have an account?
@@ -75,7 +81,7 @@
       </div>
     </div>
 
-    <!-- 🔹 JavaScript Toggle -->
+    <!-- JavaScript Toggle -->
     <script>
       const loginBox = document.getElementById('loginBox');
       const signupBox = document.getElementById('signupBox');
@@ -91,52 +97,105 @@
       }
     </script>
 
-    <!-- 🔹 Firebase Authentication Script -->
+    <!-- Firebase Authentication -->
     <script type="module">
-      import { auth } from "./firebase.js";
-      import {
-        createUserWithEmailAndPassword,
-        signInWithEmailAndPassword
-      } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
+      import { auth, db } from "./firebase.js";
+      import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
+      import { doc, setDoc } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
 
-      const signupForm = document.querySelector('#signupBox form');
-      signupForm.addEventListener('submit', (e) => {
+      // Signup form
+      const signupForm = document.getElementById("signup-form");
+      signupForm.addEventListener("submit", async (e) => {
         e.preventDefault();
 
-        const email = signupForm.querySelector('input[type="email"]').value;
-        const password = signupForm.querySelector('input[type="password"]').value;
+        const firstName = document.getElementById("firstName").value.trim();
+        const lastName = document.getElementById("lastName").value.trim();
+        const country = document.getElementById("country").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const password = document.getElementById("password").value;
 
-        createUserWithEmailAndPassword(auth, email, password)
-          .then((userCredential) => {
-            alert("✅ Signup successful!");
-            showLogin();
-          })
-          .catch((error) => {
-            alert("❌ " + error.message);
+        try {
+          const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+          const user = userCredential.user;
+
+          await setDoc(doc(db, "users", user.uid), {
+            firstName,
+            lastName,
+            country,
+            email,
+            createdAt: new Date().toISOString()
           });
+
+          alert("✅ Registration successful!");
+          showLogin();
+        } catch (error) {
+          if (error.code === "auth/email-already-in-use") {
+            alert("⚠️ Email already exists. Please login.");
+          } else {
+            alert("❌ " + error.message);
+          }
+        }
       });
 
-      const loginForm = document.querySelector('#loginBox form');
-      loginForm.addEventListener('submit', (e) => {
+      // Login form
+      const loginForm = document.getElementById("login-form");
+      loginForm.addEventListener("submit", async (e) => {
         e.preventDefault();
 
-        const email = loginForm.querySelector('input[type="text"]').value;
-        const password = loginForm.querySelector('input[type="password"]').value;
+        const email = document.getElementById("login-email").value.trim();
+        const password = document.getElementById("login-password").value;
 
-        signInWithEmailAndPassword(auth, email, password)
-          .then((userCredential) => {
-            alert("✅ Login successful!");
-            window.location = "index.html"; // চাইলে redirect করো
-          })
-          .catch((error) => {
+        try {
+          await signInWithEmailAndPassword(auth, email, password);
+          alert("✅ Login successful!");
+          window.location = "index.html";
+        } catch (error) {
+          if (error.code === "auth/invalid-credential" || error.code === "auth/user-not-found") {
+            alert("⚠️ Wrong email or password!");
+          } else {
             alert("❌ " + error.message);
-          });
+          }
+        }
       });
     </script>
-
   </main>
-  <footer>
 
+  <!-- Footer Section -->
+  <footer class="footer">
+    <div class="footer-container">
+
+      <div class="footer-about">
+        <a id="footer_nextora" href="index.html">
+          <h2>Nextora</h2>
+        </a>
+        <p>We craft creative digital experiences that help brands grow, connect, and inspire audiences worldwide.</p>
+      </div>
+
+      <div class="footer-links">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Product</a></li>
+          <li><a href="#">Services</a></li>
+          <li><a href="#">Design</a></li>
+          <li><a href="#">Support</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-contact">
+        <h3>Get in Touch</h3>
+        <p><i class="fas fa-map-marker-alt"></i> Feni, Bangladesh</p>
+        <p><i class="fas fa-envelope"></i> contact@nextora.com</p>
+        <p><i class="fas fa-phone"></i> +880 1619-518375</p>
+      </div>
+
+    </div>
+
+    <hr>
+    <div class="footer-bottom">
+      © 2025 <strong>Nextora</strong>. All Rights Reserved. | Designed by <span>Noman</span>
+    </div>
   </footer>
 </body>
 
