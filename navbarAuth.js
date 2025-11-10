@@ -1,54 +1,34 @@
 // navbarAuth.js
 
 import { auth } from "./firebase.js";
-import { onAuthStateChanged, signOut }
-  from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
+import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
 
-const loginBtn = document.getElementById("loginBtn");
 const profileIcon = document.getElementById("profileIcon");
-const logoutMenu = document.getElementById("logoutMenu");
-const logoutBtn = document.getElementById("logoutBtn");
 
-let isLoggedIn = false; // 👉 নতুন ভ্যারিয়েবল, লগইন অবস্থা ট্র্যাক রাখতে
-
-// 🔹 ইউজার স্টেট মনিটর
+// ইউজার স্টেট অনুযায়ী profile icon দেখানো
 onAuthStateChanged(auth, (user) => {
   if (user) {
-    isLoggedIn = true;
-    loginBtn.style.display = "none";
-    profileIcon.style.display = "inline-block";
-    if (logoutMenu) logoutMenu.classList.add("hidden");
+    // user logged in → profile icon দেখাবে
+    if (profileIcon) profileIcon.style.display = "inline-block";
   } else {
-    isLoggedIn = false;
-    loginBtn.style.display = "inline-block";
-    profileIcon.style.display = "inline-block"; // চাইলে hide করতে পার
-    if (logoutMenu) logoutMenu.classList.add("hidden");
+    // no user logged in → profile icon দেখাবে
+    if (profileIcon) profileIcon.style.display = "inline-block";
   }
 });
 
-// 🔹 Profile‑এ ক্লিক করলে শুধু লগইন অবস্থায় মেনু টগল হবে
+// Profile icon ক্লিক করলে সরাসরি profile page
 if (profileIcon) {
   profileIcon.addEventListener("click", (e) => {
     e.preventDefault();
-
-    if (!isLoggedIn) {
-      // লগআউট অবস্থায় কিছু হবে না, বরং register পেজে নিতে চাও?
-      // window.location = "register.html";
-      return;
-    }
-
-    logoutMenu.classList.toggle("hidden");
+    window.location.href = "profile.html";
   });
 }
 
-// 🔹 Logout বোতামে ক্লিক
-if (logoutBtn) {
-  logoutBtn.addEventListener("click", () => {
-    signOut(auth)
-      .then(() => {
-        alert("Logged out successfully!");
-        window.location = "index.html";
-      })
-      .catch((error) => alert("❌ " + error.message));
-  });
-}
+
+// Hamburger toggle
+const hamburger = document.getElementById("hamburger");
+const navLinks = document.getElementById("navLinks");
+
+hamburger.addEventListener("click", () => {
+  navLinks.classList.toggle("active");
+});
