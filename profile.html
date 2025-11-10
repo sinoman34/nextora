@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Profile</title>
+  <link rel="stylesheet" href="style.css">
+  <script type="module" src="firebase.js"></script>
+  <script type="module" src="navbarAuth.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+    integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+
+  <!-- ===== Navbar ===== -->
+  <header class="navbar">
+  <div class="logo">
+    <a href="index.html"><img src="icon-img-logo/logo full dark.png" alt="Logo"></a>
+  </div>
+
+  <!-- Menu links -->
+  <nav class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="#">About</a>
+    <a href="#">Products</a>
+    <a href="#">Design</a>
+    <a href="#">Support</a>
+  </nav>
+
+  <!-- Right icons -->
+  <div class="nav-icons">
+    <a href="#"><img src="icon-img-logo/cart.png" alt="Cart"></a>
+    <a id="profileIcon" href="#"><img src="icon-img-logo/user.png" alt="Profile"></a>
+  </div>
+
+  <!-- Hamburger -->
+  <div class="hamburger" id="hamburger">
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+</header>
+
+  <!-- ===== Profile Section ===== -->
+  <main class="profile-container">
+    <h2>My Profile</h2>
+
+    <div class="profile-card">
+      <div class="profile-content">
+        <!-- Profile Illustration -->
+        <div class="profile-image">
+          <img src="icon-img-logo/profileimg1.png" alt="Profile Illustration">
+        </div>
+
+        <!-- Profile Info -->
+        <div class="profile-info">
+          <p><b>First Name:</b> <span id="firstName"></span></p>
+          <p><b>Last Name:</b> <span id="lastName"></span></p>
+          <p><b>Email:</b> <span id="email"></span></p>
+          <p><b>Country:</b> <span id="country"></span></p>
+        </div>
+      </div>
+
+      <button id="logoutBtn" class="logout-btn">Logout</button>
+    </div>
+  </main>
+
+  <!-- ===== Footer Section ===== -->
+  <footer class="footer">
+    <div class="footer-container">
+
+      <!-- Company Info -->
+      <div class="footer-about">
+        <a id="footer_nextora" href="index.html">
+          <h2>Nextora</h2>
+        </a>
+        <p>We craft creative digital experiences that help brands grow, connect, and inspire audiences worldwide.</p>
+        <div class="footer-social">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#"><i class="fab fa-behance"></i></a>
+        </div>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="footer-links">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Product</a></li>
+          <li><a href="#">Services</a></li>
+          <li><a href="#">Design</a></li>
+          <li><a href="#">Support</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact Info -->
+      <div class="footer-contact">
+        <h3>Get in Touch</h3>
+        <p><i class="fas fa-map-marker-alt"></i> Feni, Bangladesh</p>
+        <p><i class="fas fa-envelope"></i> contact@nextora.com</p>
+        <p><i class="fas fa-phone"></i> +880 1619-518375</p>
+      </div>
+
+    </div>
+
+    <hr>
+    <div class="footer-bottom">
+      © 2025 <strong>Nextora</strong>. All Rights Reserved. | Designed by <span>Noman</span>
+    </div>
+  </footer>
+
+  <!-- ===== Firebase User Data & Logout Script ===== -->
+  <script type="module">
+    import { auth, db } from "./firebase.js";
+    import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
+    import { doc, getDoc } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
+
+    const firstNameSpan = document.getElementById("firstName");
+    const lastNameSpan = document.getElementById("lastName");
+    const emailSpan = document.getElementById("email");
+    const countrySpan = document.getElementById("country");
+    const logoutBtn = document.getElementById("logoutBtn");
+
+    onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        const userDoc = await getDoc(doc(db, "users", user.uid));
+        if (userDoc.exists()) {
+          const data = userDoc.data();
+          firstNameSpan.textContent = data.firstName || "-";
+          lastNameSpan.textContent = data.lastName || "-";
+          emailSpan.textContent = data.email || user.email;
+          countrySpan.textContent = data.country || "-";
+        } else {
+          firstNameSpan.textContent = "-";
+          lastNameSpan.textContent = "-";
+          emailSpan.textContent = user.email;
+          countrySpan.textContent = "-";
+        }
+      } else {
+        alert("Please log in first!");
+        window.location.href = "Register.html";
+      }
+    });
+
+    logoutBtn.addEventListener("click", () => {
+      signOut(auth)
+        .then(() => {
+          alert("✅ Logged out successfully!");
+          window.location.href = "index.html";
+        })
+        .catch((error) => alert("❌ " + error.message));
+    });
+  </script>
+</body>
+</html>
