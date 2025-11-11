@@ -8,10 +8,8 @@ const profileIcon = document.getElementById("profileIcon");
 // ইউজার স্টেট অনুযায়ী profile icon দেখানো
 onAuthStateChanged(auth, (user) => {
   if (user) {
-    // user logged in → profile icon দেখাবে
     if (profileIcon) profileIcon.style.display = "inline-block";
   } else {
-    // no user logged in → profile icon দেখাবে
     if (profileIcon) profileIcon.style.display = "inline-block";
   }
 });
@@ -24,11 +22,12 @@ if (profileIcon) {
   });
 }
 
-
-// Hamburger toggle
+// ✅ Hamburger toggle (responsive menu)
 const hamburger = document.getElementById("hamburger");
-const navLinks = document.getElementById("navLinks");
+const navLinks = document.querySelector(".nav-links"); // <-- এখানে পরিবর্তন করা হয়েছে
 
-hamburger.addEventListener("click", () => {
-  navLinks.classList.toggle("active");
-});
+if (hamburger && navLinks) {
+  hamburger.addEventListener("click", () => {
+    navLinks.classList.toggle("active");
+  });
+}
