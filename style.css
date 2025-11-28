@@ -16,14 +16,16 @@ body {
   align-items: center;
   justify-content: space-between;
   background: #fff;
-  padding: 16px 40px; /* increased height */
+  padding: 16px 40px;
+  /* increased height */
   border-bottom: 1px solid #ddd;
   position: relative;
   z-index: 100;
 }
 
 .logo img {
-  height: 40px; /* desktop logo size */
+  height: 40px;
+  /* desktop logo size */
 }
 
 /* Navigation Links */
@@ -43,7 +45,8 @@ body {
   display: flex;
   align-items: center;
   gap: 15px;
-  margin-left: auto; /* right aligned */
+  margin-left: auto;
+  /* right aligned */
 }
 
 .nav-icons img {
@@ -72,7 +75,8 @@ body {
   }
 
   .logo img {
-    height: 30px; /* smaller logo on mobile */
+    height: 30px;
+    /* smaller logo on mobile */
   }
 
   .hamburger {
@@ -231,7 +235,7 @@ body {
   border-radius: 8px;
   width: 600px;
   text-align: center;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
   margin: 60px auto;
 }
 
@@ -244,7 +248,7 @@ body {
   background: #ffffff;
   padding: 25px 30px;
   border-radius: 12px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
   margin: 20px auto;
   max-width: 400px;
   text-align: center;
@@ -336,7 +340,7 @@ body {
 
 .product-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 .product-card img {
@@ -390,16 +394,16 @@ body {
   padding: 0 20px;
 }
 
+#footer_nextora img {
+  width: 150px;
+  margin-bottom: 15px;
+}
 .footer-about h2 {
   color: #fff;
   font-size: 24px;
   margin-bottom: 15px;
 }
 
-#footer_nextora img {
-  width: 150px;
-  margin-bottom: 15px;
-  
 .footer-about p {
   line-height: 1.8;
   font-size: 14px;
@@ -467,8 +471,9 @@ body {
   color: #a5a5a5;
 }
 
-.footer-bottom span {
+.footer-bottom a {
   color: #7b2ff7;
+  text-decoration: none;
 }
 
 .footer-bottom strong {
@@ -482,7 +487,7 @@ body {
   padding: 30px 25px;
   background: #ffffff;
   border-radius: 15px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
   text-align: center;
 }
 
@@ -519,7 +524,7 @@ body {
   border-left: 5px solid #7b2ff7;
   border-radius: 12px;
   padding: 25px 20px;
-  box-shadow: inset 0 2px 6px rgba(0,0,0,0.05);
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.05);
   text-align: left;
   min-width: 250px;
 }
@@ -655,19 +660,23 @@ body {
 
 /* Logo on left */
 .logo {
-  flex: 1; /* takes left space */
+  flex: 1;
+  /* takes left space */
 }
 
 .logo img {
-  height: 40px; /* desktop logo size */
+  height: 40px;
+  /* desktop logo size */
 }
 
 /* Navigation Links centered */
 .nav-links {
   display: flex;
   gap: 20px;
-  justify-content: center; /* center horizontally */
-  flex: 2; /* middle area */
+  justify-content: center;
+  /* center horizontally */
+  flex: 2;
+  /* middle area */
 }
 
 .nav-links a {
@@ -681,7 +690,8 @@ body {
   display: flex;
   align-items: center;
   gap: 15px;
-  flex: 1; /* right area */
+  flex: 1;
+  /* right area */
   justify-content: flex-end;
 }
 
@@ -712,7 +722,8 @@ body {
   }
 
   .logo img {
-    height: 30px; /* smaller logo on mobile */
+    height: 30px;
+    /* smaller logo on mobile */
   }
 
   .hamburger {
