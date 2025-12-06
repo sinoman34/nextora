@@ -4,7 +4,7 @@ import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.13.0/firebas
 import { getAuth } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
 import { getFirestore } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
 
-// 🔧 তোমার Firebase project config (exactly যেটা console থেকে পেয়েছো)
+// 🔧 Firebase project config (exactly যেটা console থেকে পেয়েছো)
 const firebaseConfig = {
   apiKey: "AIzaSyAcovYL8VyaStebGBH7VfMY6tNbEuDiP5U",
   authDomain: "nextora-shop.firebaseapp.com",
