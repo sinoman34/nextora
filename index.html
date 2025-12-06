@@ -24,9 +24,9 @@
     <!-- Menu links -->
     <nav class="nav-links">
       <a href="index.html">Home</a>
-      <a href="#">About</a>
-      <a href="#">Products</a>
-      <a href="#">Design</a>
+      <a href="about.html">About</a>
+      <a href="product.html">Products</a>
+      <a href="design.html">Design</a>
       <a href="#">Support</a>
     </nav>
 
@@ -71,46 +71,78 @@
 
       <!-- Overlay Content -->
       <div class="hero-content">
-        <h1>Welcome to Nextora Shop</h1>
+        <h1>Welcome to <span class="brand-animated">Nextora Shop</span></h1>
         <p>Your one-stop shop for all your digital needs.</p>
         <a id="shopNowBtn" href="#" class="shop-now-btn">Shop Now</a>
       </div>
 
     </section>
-    <!-- 🔹 Featured Products Section -->
-    <section class="products-section">
+    <!-- 🔹 Featured Products Section (Updated) -->
+    <section class="products-section home-products">
       <h2>Featured Products</h2>
+      <!-- <p class="products-subtitle">
+        Handpicked tools for creators, developers and power users. Secure keys & instant delivery.
+      </p> -->
 
       <div class="product-grid">
-        <div class="product-card">
-          <img src="icon-img-logo/product1.png" alt="Adobe Photoshop">
-          <h3>Adobe Photoshop</h3>
-          <p>$19.99</p>
-          <button>Add to Cart</button>
+        <!-- Adobe -->
+        <div class="product-card product-page-card" data-category="adobe">
+          <div class="product-image-wrapper">
+            <img src="icon-img-logo/product-image/product1.png" alt="Adobe Photoshop CC 2024">
+          </div>
+          <h3 class="product-title">Adobe Photoshop CC 2024</h3>
+          <p class="product-meta">Adobe • Lifetime License</p>
+          <p class="product-price">$19.99</p>
+          <div class="product-card-actions">
+            <button class="btn-outline">Add to Cart</button>
+            <button class="btn-primary" onclick="window.location.href='product.html'">View More</button>
+          </div>
         </div>
 
-        <div class="product-card">
-          <img src="icon-img-logo/product2.png" alt="Windows 11 Pro">
-          <h3>Windows 11 Pro</h3>
-          <p>$39.99</p>
-          <button>Add to Cart</button>
+        <!-- Windows -->
+        <div class="product-card product-page-card" data-category="windows">
+          <div class="product-image-wrapper">
+            <img src="icon-img-logo/product-image/product2.png" alt="Windows 11 Pro">
+          </div>
+          <h3 class="product-title">Windows 11 Pro Genuine Key</h3>
+          <p class="product-meta">Microsoft • Lifetime Activation</p>
+          <p class="product-price">$39.99</p>
+          <div class="product-card-actions">
+            <button class="btn-outline">Add to Cart</button>
+            <button class="btn-primary" onclick="window.location.href='product.html'">View More</button>
+          </div>
         </div>
 
-        <div class="product-card">
-          <img src="icon-img-logo/product3.png" alt="ChatGPT Plus">
-          <h3>ChatGPT Plus</h3>
-          <p>$20.00</p>
-          <button>Add to Cart</button>
+        <!-- AI Tools -->
+        <div class="product-card product-page-card" data-category="ai-tools">
+          <div class="product-image-wrapper">
+            <img src="icon-img-logo/product-image/product3.png" alt="ChatGPT Plus">
+          </div>
+          <h3 class="product-title">ChatGPT Plus Subscription</h3>
+          <p class="product-meta">AI Assistant • 1 Month Access</p>
+          <p class="product-price">$20.00</p>
+          <div class="product-card-actions">
+            <button class="btn-outline">Add to Cart</button>
+            <button class="btn-primary" onclick="window.location.href='product.html'">View More</button>
+          </div>
         </div>
 
-        <div class="product-card">
-          <img src="icon-img-logo/product4.png" alt="Canva Pro">
-          <h3>Canva Pro</h3>
-          <p>$12.99</p>
-          <button>Add to Cart</button>
+        <!-- Canva / Design -->
+        <div class="product-card product-page-card" data-category="adobe">
+          <div class="product-image-wrapper">
+            <img src="icon-img-logo/product-image/product4.png" alt="Canva Pro">
+          </div>
+          <h3 class="product-title">Canva Pro Premium</h3>
+          <p class="product-meta">Design Suite • 1 Year Access</p>
+          <p class="product-price">$12.99</p>
+          <div class="product-card-actions">
+            <button class="btn-outline">Add to Cart</button>
+            <button class="btn-primary" onclick="window.location.href='product.html'">View More</button>
+          </div>
         </div>
       </div>
     </section>
+
   </main>
 
   <!-- ======= Footer Section ======= -->
@@ -136,10 +168,10 @@
         <h3>Quick Links</h3>
         <ul>
           <li><a href="index.html">Home</a></li>
-          <li><a href="#">About</a></li>
+          <li><a href="about.html">About</a></li>
           <li><a href="#">Product</a></li>
           <li><a href="#">Services</a></li>
-          <li><a href="#">Design</a></li>
+          <li><a href="design.html">Design</a></li>
           <li><a href="#">Support</a></li>
         </ul>
       </div>
@@ -156,9 +188,11 @@
 
     <hr>
     <div class="footer-bottom">
-      © 2025 <strong>Nextora</strong>. All Rights Reserved. | Designed by <a href="https://www.facebook.com/nomannext">Noman</a>
+      © 2025 <strong>Nextora</strong>. All Rights Reserved. | Designed by <a
+        href="https://www.facebook.com/nomannext">Noman</a>
     </div>
   </footer>
+
   <!-- Font Awesome -->
   <!-- <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script> -->
 
@@ -176,5 +210,21 @@
     });
   }
 </script>
+
+<script>
+  // Auto active nav link based on current page
+  const currentPage = location.pathname.split("/").pop() || "index.html";
+  document.querySelectorAll(".nav-links a").forEach(a => {
+    const href = a.getAttribute("href");
+    if (!href || href === "#") return;
+
+    if (href === currentPage) {
+      a.classList.add("nav-link-active");
+    } else {
+      a.classList.remove("nav-link-active");
+    }
+  });
+</script>
+
 
 </html>
