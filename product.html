@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>All Products - Nextora Shop</title>
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Firebase + Auth Navbar -->
+  <script type="module" src="firebase.js"></script>
+  <script type="module" src="navbarAuth.js"></script>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+    integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+
+  <!-- ===== Navbar (same as other pages) ===== -->
+  <header class="navbar">
+    <div class="logo">
+      <a href="index.html"><img src="icon-img-logo/logo full dark.png" alt="Logo"></a>
+    </div>
+
+    <!-- Menu links -->
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="product.html">Products</a>
+      <a href="design.html">Design</a>
+      <a href="#">Support</a>
+    </nav>
+
+    <!-- Right icons -->
+    <div class="nav-icons">
+      <a href="#"><img src="icon-img-logo/cart.png" alt="Cart"></a>
+      <a id="profileIcon" href="#"><img src="icon-img-logo/user.png" alt="Profile"></a>
+    </div>
+
+    <!-- Hamburger -->
+    <div class="hamburger" id="hamburger">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </header>
+
+  <!-- ========= PRODUCT PAGE MAIN CONTENT ========= -->
+  <main class="product-page">
+    <!-- Category Navbar -->
+    <section class="product-category-bar">
+      <h1 class="product-page-title">Browse All Products</h1>
+      <p class="product-page-subtitle">
+        Choose a category to quickly find the tools you need. All keys are secure and instantly delivered.
+      </p>
+
+      <div class="product-category-nav">
+        <button class="category-pill active" data-category="all">All Products</button>
+        <button class="category-pill" data-category="electronics">Electronics</button>
+        <button class="category-pill" data-category="adobe">Adobe</button>
+        <button class="category-pill" data-category="windows">Windows</button>
+        <button class="category-pill" data-category="ai-tools">AI Tools</button>
+      </div>
+    </section>
+
+    <!-- Products Grid -->
+    <section class="product-list-section">
+      <h2>Featured & Popular</h2>
+
+      <div class="product-list-grid">
+        <!-- Adobe -->
+        <div class="product-card product-page-card" data-category="adobe">
+          <div class="product-image-wrapper">
+            <img src="icon-img-logo/product-image/product1.png" alt="Adobe Photoshop">
+          </div>
+          <h3 class="product-title">Adobe Photoshop CC 2024</h3>
+          <p class="product-meta">Adobe • Lifetime License</p>
+          <p class="product-price">$19.99</p>
+          <div class="product-card-actions">
+            <button class="btn-outline add-to-cart">Add to Cart</button>
+            <button class="btn-primary buy-now"
+              data-name="Adobe Photoshop CC 2024"
+              data-price="19.99"
+              data-meta="Adobe • Lifetime License"
+              data-img="icon-img-logo/product-image/product1.png">Buy Now</button>
+          </div>
+        </div>
+
+        <div class="product-card product-page-card" data-category="adobe">
+          <div class="product-image-wrapper">
+            <img src="icon-img-logo/product-image/product4.png" alt="Canva Pro">
+          </div>
+          <h3 class="product-title">Canva Pro Premium</h3>
+          <p class="product-meta">Design Suite • 1 Year Access</p>
+          <p class="product-price">$12.99</p>
+          <div class="product-card-actions">
+            <button class="btn-outline add-to-cart">Add to Cart</button>
+            <button class="btn-primary buy-now"
+              data-name="Canva Pro Premium"
+              data-price="12.99"
+              data-meta="Design Suite • 1 Year Access"
+              data-img="icon-img-logo/product-image/product4.png">Buy Now</button>
+          </div>
+        </div>
+
+        <!-- Windows -->
+        <div class="product-card product-page-card" data-category="windows">
+          <div class="product-image-wrapper">
+            <img src="icon-img-logo/product-image/Windows-11-Pro.webp" alt="Windows 11 Pro">
+          </div>
+          <h3 class="product-title">Windows 11 Pro Genuine Key</h3>
+          <p class="product-meta">Microsoft • Lifetime Activation</p>
+          <p class="product-price">$39.99</p>
+          <div class="product-card-actions">
+            <button class="btn-outline add-to-cart">Add to Cart</button>
+            <button class="btn-primary buy-now"
+              data-name="Windows 11 Pro Genuine Key"
+              data-price="39.99"
+              data-meta="Microsoft • Lifetime Activation"
+              data-img="icon-img-logo/product-image/Windows-11-Pro.webp">Buy Now</button>
+          </div>
+        </div>
+
+        <div class="product-card product-page-card" data-category="windows">
+          <div class="product-image-wrapper">
+            <img src="icon-img-logo/product-image/Windows-10-Pro-OEM-1.jpg" alt="Windows 10 Pro">
+          </div>
+          <h3 class="product-title">Windows 10 Pro OEM License</h3>
+          <p class="product-meta">Microsoft • Digital Delivery</p>
+          <p class="product-price">$24.99</p>
+          <div class="product-card-actions">
+            <button class="btn-outline add-to-cart">Add to Cart</button>
+            <button class="btn-primary buy-now"
+              data-name="Windows 10 Pro OEM License"
+              data-price="24.99"
+              data-meta="Microsoft • Digital Delivery"
+              data-img="icon-img-logo/product-image/Windows-10-Pro-OEM-1.jpg">Buy Now</button>
+          </div>
+        </div>
+
+        <!-- AI Tools -->
+        <div class="product-card product-page-card" data-category="ai-tools">
+          <div class="product-image-wrapper">
+            <img src="icon-img-logo/product-image/product3.png" alt="ChatGPT Plus">
+          </div>
+          <h3 class="product-title">ChatGPT Plus Subscription</h3>
+          <p class="product-meta">AI Assistant • 1 Month Access</p>
+          <p class="product-price">$20.00</p>
+          <div class="product-card-actions">
+            <button class="btn-outline add-to-cart">Add to Cart</button>
+            <button class="btn-primary buy-now"
+              data-name="ChatGPT Plus Subscription"
+              data-price="20.00"
+              data-meta="AI Assistant • 1 Month Access"
+              data-img="icon-img-logo/product-image/product3.png">Buy Now</button>
+          </div>
+        </div>
+
+        <div class="product-card product-page-card" data-category="ai-tools">
+          <div class="product-image-wrapper">
+            <img src="icon-img-logo/product-image/gemini1.png" alt="Gemini Pro">
+          </div>
+          <h3 class="product-title">Gemini Pro</h3>
+          <p class="product-meta">Unlimited Renders • 30 Days</p>
+          <p class="product-price">$14.99</p>
+          <div class="product-card-actions">
+            <button class="btn-outline add-to-cart">Add to Cart</button>
+            <button class="btn-primary buy-now"
+              data-name="Gemini Pro"
+              data-price="14.99"
+              data-meta="Unlimited Renders • 30 Days"
+              data-img="icon-img-logo/product-image/gemini1.png">Buy Now</button>
+          </div>
+        </div>
+
+        <!-- Electronics -->
+        <div class="product-card product-page-card" data-category="electronics">
+          <div class="product-image-wrapper">
+            <img src="icon-img-logo/product-image/headphone1.jpg" alt="Wireless Headphones">
+          </div>
+          <h3 class="product-title">Wireless Studio Headphones</h3>
+          <p class="product-meta">Noise Cancelling • USB-C</p>
+          <p class="product-price">$59.99</p>
+          <div class="product-card-actions">
+            <button class="btn-outline add-to-cart">Add to Cart</button>
+            <button class="btn-primary buy-now"
+              data-name="Wireless Studio Headphones"
+              data-price="59.99"
+              data-meta="Noise Cancelling • USB-C"
+              data-img="icon-img-logo/product-image/headphone1.jpg">Buy Now</button>
+          </div>
+        </div>
+
+        <div class="product-card product-page-card" data-category="electronics">
+          <div class="product-image-wrapper">
+            <img src="icon-img-logo/product-image/keyboard1.jpg" alt="Mechanical Keyboard">
+          </div>
+          <h3 class="product-title">RGB Mechanical Keyboard</h3>
+          <p class="product-meta">Blue Switch • Backlit</p>
+          <p class="product-price">$49.99</p>
+          <div class="product-card-actions">
+            <button class="btn-outline add-to-cart">Add to Cart</button>
+            <button class="btn-primary buy-now"
+              data-name="RGB Mechanical Keyboard"
+              data-price="49.99"
+              data-meta="Blue Switch • Backlit"
+              data-img="icon-img-logo/product-image/keyboard1.jpg">Buy Now</button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- ======= Footer (same as other pages) ======= -->
+  <footer class="footer">
+    <div class="footer-container">
+
+      <!-- Company Info -->
+      <div class="footer-about">
+        <a id="footer_nextora" href="index.html">
+          <img src="icon-img-logo/logo white.png" alt="Nextora">
+        </a>
+        <p>We craft creative digital experiences that help brands grow, connect, and inspire audiences worldwide.</p>
+        <div class="footer-social">
+          <a href="https://www.facebook.com/nextoraofficial"><i class="fa-brands fa-facebook"></i></a>
+          <a href="https://www.instagram.com/nomannext/"><i class="fa-brands fa-square-instagram"></i></a>
+          <a href="https://www.linkedin.com/in/nomannext/"><i class="fa-brands fa-linkedin"></i></a>
+          <a href="https://www.behance.net/NomanNext"><i class="fa-brands fa-behance"></i></a>
+        </div>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="footer-links">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="product.html">Product</a></li>
+          <li><a href="#">Services</a></li>
+          <li><a href="design.html">Design</a></li>
+          <li><a href="#">Support</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact Info -->
+      <div class="footer-contact">
+        <h3>Get in Touch</h3>
+        <p><i class="fas fa-map-marker-alt"></i> Feni, Bangladesh</p>
+        <p><i class="fas fa-envelope"></i> contact@nextora.com</p>
+        <p><i class="fas fa-phone"></i> +880 1619-518375</p>
+      </div>
+
+    </div>
+
+    <hr>
+    <div class="footer-bottom">
+      © 2025 <strong>Nextora</strong>. All Rights Reserved. | Designed by <a
+        href="https://www.facebook.com/nomannext">Noman</a>
+    </div>
+  </footer>
+
+  <!-- Category Filter Script -->
+  <script>
+    const categoryButtons = document.querySelectorAll(".category-pill");
+    const productCards = document.querySelectorAll(".product-page-card");
+
+    categoryButtons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const category = btn.getAttribute("data-category");
+
+        categoryButtons.forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+
+        productCards.forEach((card) => {
+          const cardCategory = card.getAttribute("data-category");
+          card.style.display = (category === "all" || cardCategory === category) ? "flex" : "none";
+        });
+      });
+    });
+  </script>
+
+  <!-- Auto active nav link based on current page -->
+  <script>
+    const currentPage = location.pathname.split("/").pop() || "index.html";
+    document.querySelectorAll(".nav-links a").forEach(a => {
+      const href = a.getAttribute("href");
+      if (!href || href === "#") return;
+
+      if (href === currentPage) a.classList.add("nav-link-active");
+      else a.classList.remove("nav-link-active");
+    });
+  </script>
+
+  <!-- ✅ Login Guard + Buy Now + Add to Cart -->
+  <script type="module">
+    import { auth } from "./firebase.js";
+    import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+    const REGISTER_PAGE = "Register.html";
+    const BUY_PAGE = "buy.html";
+
+    function safeText(v) {
+      return String(v ?? "").trim();
+    }
+
+    function requireLoginThen(next) {
+      const unsub = onAuthStateChanged(auth, (user) => {
+        unsub();
+        if (!user) {
+          window.location.href = REGISTER_PAGE;
+          return;
+        }
+        next(user);
+      });
+    }
+
+    function getBtnData(btn) {
+      // priority: dataset from button
+      const name = safeText(btn.dataset.name) || "Product";
+      const price = safeText(btn.dataset.price) || "0.00";
+      const meta = safeText(btn.dataset.meta) || "Instant digital delivery";
+      const img = safeText(btn.dataset.img) || "";
+
+      return { name, price, meta, img };
+    }
+
+    // Buy Now (auth required)
+    document.querySelectorAll(".buy-now").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const data = getBtnData(btn);
+
+        requireLoginThen(() => {
+          const url = `${BUY_PAGE}?name=${encodeURIComponent(data.name)}&price=${encodeURIComponent(data.price)}&img=${encodeURIComponent(data.img)}&meta=${encodeURIComponent(data.meta)}`;
+          window.location.href = url;
+        });
+      });
+    });
+
+    // Add to Cart (auth required) - demo localStorage
+    document.querySelectorAll(".add-to-cart").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const card = btn.closest(".product-page-card");
+        const name = safeText(card?.querySelector(".product-title")?.textContent) || "Product";
+        const priceText = safeText(card?.querySelector(".product-price")?.textContent) || "$0.00";
+        const price = priceText.replace("$", "").trim();
+        const meta = safeText(card?.querySelector(".product-meta")?.textContent) || "Instant digital delivery";
+        const img = safeText(card?.querySelector("img")?.getAttribute("src")) || "";
+
+        const data = { name, price, meta, img };
+
+        requireLoginThen(() => {
+          const cart = JSON.parse(localStorage.getItem("nextora_cart") || "[]");
+          cart.push({ ...data, qty: 1, addedAt: new Date().toISOString() });
+          localStorage.setItem("nextora_cart", JSON.stringify(cart));
+          alert(`✅ Added to cart: ${data.name}`);
+        });
+      });
+    });
+  </script>
+
+</body>
+
+</html>
