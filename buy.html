@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Buy Now - Nextora</title>
+
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+    integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <script type="module" src="firebase.js"></script>
+  <script type="module" src="navbarAuth.js"></script>
+</head>
+
+<body>
+
+  <!-- ===== Navbar (same) ===== -->
+  <header class="navbar">
+    <div class="logo">
+      <a href="index.html"><img src="icon-img-logo/logo full dark.png" alt="Logo"></a>
+    </div>
+
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="product.html">Products</a>
+      <a href="design.html">Design</a>
+      <a href="#">Support</a>
+    </nav>
+
+    <div class="nav-icons">
+      <a href="#"><img src="icon-img-logo/cart.png" alt="Cart"></a>
+      <a id="profileIcon" href="#"><img src="icon-img-logo/user.png" alt="Profile"></a>
+    </div>
+
+    <div class="hamburger" id="hamburger">
+      <div></div><div></div><div></div>
+    </div>
+  </header>
+
+  <!-- ===== Checkout Page ===== -->
+  <main class="buy-page">
+    <div class="buy-container buy-container--summary-left">
+
+      <!-- ✅ LEFT: Order Summary -->
+      <aside class="buy-right buy-right--left">
+        <h2 class="buy-summary-title">Order Summary</h2>
+
+        <div class="buy-summary-card">
+          <div class="buy-product">
+            <div class="buy-product-img">
+              <img id="pImg" src="icon-img-logo/product1.png" alt="Product" />
+            </div>
+
+            <div class="buy-product-info">
+              <h3 id="pName">Product Name</h3>
+              <p id="pMeta" class="buy-product-meta">Instant digital delivery</p>
+            </div>
+          </div>
+
+          <div class="buy-line"></div>
+
+          <div class="buy-row">
+            <span>Price</span>
+            <strong id="pPrice">$0.00</strong>
+          </div>
+
+          <div class="buy-row">
+            <span>Service</span>
+            <strong>$0.00</strong>
+          </div>
+
+          <div class="buy-line"></div>
+
+          <div class="buy-row buy-total">
+            <span>Total</span>
+            <strong id="pTotal">$0.00</strong>
+          </div>
+        </div>
+
+        <div class="buy-badges">
+          <span><i class="fa-solid fa-shield-halved"></i> Secure</span>
+          <span><i class="fa-solid fa-bolt"></i> Instant Delivery</span>
+          <span><i class="fa-solid fa-headset"></i> Support</span>
+        </div>
+      </aside>
+
+      <!-- ✅ RIGHT: Form + Payment Instruction -->
+      <div class="buy-left buy-left--right">
+        <h1 class="buy-title">Checkout</h1>
+        <p class="buy-subtitle">Complete your order details and confirm.</p>
+
+        <!-- ✅ Payment Instruction Notice -->
+        <div class="pay-notice">
+          <div class="pay-notice-icon">
+            <i class="fa-solid fa-circle-info"></i>
+          </div>
+
+          <div class="pay-notice-text">
+            <h3>Payment Instruction</h3>
+            <p>
+              Send the total amount of the product to this number, then confirm the order by making the transaction.
+            </p>
+
+            <div class="pay-notice-methods">
+              <span class="pay-chip">bKash</span>
+              <span class="pay-chip">Nagad</span>
+              <span class="pay-chip">Rocket</span>
+            </div>
+
+            <div class="pay-number-row">
+              <span class="pay-number-label">Send Money:</span>
+              <strong class="pay-number" id="payNumberText">01619518375</strong>
+
+              <button type="button" class="pay-copy-btn" id="copyPayNumber">Copy</button>
+            </div>
+
+            <small class="pay-note">
+              Tip: After making the payment, you can quickly verify it by entering the correct transaction details in the form.
+            </small>
+          </div>
+        </div>
+
+        <form class="buy-form" id="buyForm">
+          <div class="buy-grid">
+            <div class="buy-field">
+              <label>Full Name</label>
+              <input type="text" id="fullName" placeholder="Your name" required />
+            </div>
+
+            <div class="buy-field">
+              <label>Email</label>
+              <input type="email" id="email" placeholder="you@email.com" required />
+            </div>
+
+            <div class="buy-field">
+              <label>Payment Method</label>
+              <select id="paymentMethod" required>
+                <option value="bkash">bKash</option>
+                <option value="nagad">Nagad</option>
+                <option value="card">Rocket</option>
+              </select>
+            </div>
+
+            <div class="buy-field">
+              <label>Transaction ID</label>
+              <input type="text" id="trxId" placeholder="e.g. TXN12345" />
+            </div>
+          </div>
+
+          <div class="buy-actions">
+            <a href="product.html" class="btn-outline buy-back-link">Back to Products</a>
+            <button type="submit" class="btn-primary">Confirm Order</button>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ===== Footer (same) ===== -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-about">
+        <a id="footer_nextora" href="index.html">
+          <img src="icon-img-logo/logo white.png" alt="Nextora">
+        </a>
+        <p>We craft creative digital experiences that help brands grow, connect, and inspire audiences worldwide.</p>
+        <div class="footer-social">
+          <a href="https://www.facebook.com/nextoraofficial"><i class="fa-brands fa-facebook"></i></a>
+          <a href="https://www.instagram.com/nomannext/"><i class="fa-brands fa-square-instagram"></i></a>
+          <a href="https://www.linkedin.com/in/nomannext/"><i class="fa-brands fa-linkedin"></i></a>
+          <a href="https://www.behance.net/NomanNext"><i class="fa-brands fa-behance"></i></a>
+        </div>
+      </div>
+
+      <div class="footer-links">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="product.html">Product</a></li>
+          <li><a href="design.html">Services / Design</a></li>
+          <li><a href="#">Support</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-contact">
+        <h3>Get in Touch</h3>
+        <p><i class="fas fa-map-marker-alt"></i> Feni, Bangladesh</p>
+        <p><i class="fas fa-envelope"></i> contact@nextora.com</p>
+        <p><i class="fas fa-phone"></i> +880 1619-518375</p>
+      </div>
+    </div>
+
+    <hr>
+    <div class="footer-bottom">
+      © 2025 <strong>Nextora</strong>. All Rights Reserved. | Designed by
+      <a href="https://www.facebook.com/nomannext">Noman</a>
+    </div>
+  </footer>
+
+  <!-- ✅ CONFIG (MUST) -->
+  <script>
+    window.NEXTORA_SHEET_WEBAPP_URL =
+      "https://script.google.com/macros/s/AKfycbxM6pJUnyEQ8LpHSIKoxVigW-IkC45e9crU04XJ1wfbvRm243oqyMh9QcHoWwJx4--v/exec";
+    window.NEXTORA_WA_NUMBER = "8801619518375";
+  </script>
+
+  <script>
+    // Copy payment number
+    const copyBtn = document.getElementById("copyPayNumber");
+    if (copyBtn) {
+      copyBtn.addEventListener("click", async () => {
+        const number = (document.getElementById("payNumberText")?.textContent || "").trim();
+        try {
+          await navigator.clipboard.writeText(number);
+          copyBtn.textContent = "Copied!";
+          setTimeout(() => (copyBtn.textContent = "Copy"), 1200);
+        } catch {
+          alert("Copy failed. Number: " + number);
+        }
+      });
+    }
+  </script>
+
+  <script src="jsfile/buy.js"></script>
+</body>
+</html>
