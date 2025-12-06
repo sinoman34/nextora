@@ -24,7 +24,7 @@ if (profileIcon) {
 
 // ✅ Hamburger toggle (responsive menu)
 const hamburger = document.getElementById("hamburger");
-const navLinks = document.querySelector(".nav-links"); // <-- এখানে পরিবর্তন করা হয়েছে
+const navLinks = document.querySelector(".nav-links");
 
 if (hamburger && navLinks) {
   hamburger.addEventListener("click", () => {
